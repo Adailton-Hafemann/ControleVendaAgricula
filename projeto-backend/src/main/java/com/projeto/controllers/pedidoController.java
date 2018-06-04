@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.projeto.dtos.PedidoDto;
 import com.projeto.dtos.ProductDto;
+import com.projeto.dtos.pedidoIdDto;
 import com.projeto.interactions.pedido.PedidoAdition;
 import com.projeto.interactions.product.ProductAdition;
 import com.projeto.repositories.PedidoRepository;
@@ -33,6 +34,11 @@ public class pedidoController {
 	public List<PedidoDto> getAll() {
 		return pedidoAdition.getAll().stream().map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
 	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public PedidoDto get(@RequestBody pedidoIdDto id) {
+		return new PedidoDto(pedidoRepository.findOne(id.getId()));
+	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public PedidoDto save(@PathVariable String parentId, @RequestBody PedidoDto pedidoDto) {
@@ -44,8 +50,8 @@ public class pedidoController {
 		return new PedidoDto( pedidoRepository.save( pedidoDto.toEntity() ) );
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable String id) {
-		pedidoRepository.delete( id );
+	@RequestMapping(value = "/deletar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void delete(@RequestBody pedidoIdDto id) {
+		pedidoRepository.delete( id.getId() );
 	}
 }

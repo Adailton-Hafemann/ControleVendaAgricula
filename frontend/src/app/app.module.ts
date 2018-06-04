@@ -8,6 +8,8 @@ import { ProdutoComponent } from './produto/produto.component';
 import { ListaProdutoComponent } from './lista-produto/lista-produto.component';
 import { ProdutoCadastroComponent } from './produto-cadastro/produto-cadastro.component';
 import { PedidoComponent } from './pedido/pedido.component';
+import { ListaPedidoComponent } from './lista-pedido/lista-pedido.component';
+import { PedidoEditarComponent } from './pedido-editar/pedido-editar.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { PedidoComponent } from './pedido/pedido.component';
     ProdutoComponent,
     ListaProdutoComponent,
     ProdutoCadastroComponent,
-    PedidoComponent
+    PedidoComponent,
+    ListaPedidoComponent,
+    PedidoEditarComponent
   ],
   imports: [
     BrowserModule,

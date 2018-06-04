@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-12">
+      <button class="btn btn-primary" [routerLink]="['../pedido']">Cadastrar</button>
+    </div>
+    <hr>
+    <div class="card" style="margin: 20px" *ngFor="let pedido of listaPedido">
+      <div class="card-body"  [routerLink]="['../pedido/', pedido.id]">
+        <p class="card-text">Nome do produto: {{selecionarProduto(pedido)?.nome}}</p>
+        <p>Quantidade: {{pedido.quantidade}}</p>
+      </div>
+    </div>
+  </div>
+</div>

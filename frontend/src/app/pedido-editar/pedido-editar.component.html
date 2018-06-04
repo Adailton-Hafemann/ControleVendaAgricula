@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    Cadastro de pedido
+    Editar pedido
   </div>
   <div class="card-body">
     <div class="row">
@@ -17,10 +17,14 @@
     </div>  
     <div>
       <button class="btn btn-primary" (click)="salvar()">salvar</button>
+      <button class="btn btn-danger" (click)="deletar()">deletar</button>
     </div>
-
     <div class="alert alert-success" style="margin-top: 10px;" role="alert" *ngIf="sucesso">
       Salvo com sucesso.
     </div>
+    <div class="alert alert-success" style="margin-top: 10px;" role="alert" *ngIf="deletado">
+      Deletado com sucesso.
+    </div>
+    
   </div>
 </div>

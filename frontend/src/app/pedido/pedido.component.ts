@@ -11,6 +11,7 @@ export class PedidoComponent implements OnInit {
 
   pedido = {quantidade:0, produtoId: 0, id: null}
   produtoLista = [];
+  sucesso = false;
 
   constructor(
     public http: HttpClient
@@ -25,7 +26,7 @@ export class PedidoComponent implements OnInit {
   salvar() {
     this.pedido.id = null;
     this.http.post('http://localhost:8080/pedidos', this.pedido).subscribe((response) => {
-      console.log(response);
+      this.sucesso = true;
     })
   }
 
