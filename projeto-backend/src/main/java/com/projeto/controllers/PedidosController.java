@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.projeto.dtos.PedidoDto;
 import com.projeto.dtos.ProductDto;
-import com.projeto.dtos.pedidoIdDto;
 import com.projeto.interactions.pedido.PedidoAdition;
 import com.projeto.interactions.product.ProductAdition;
 import com.projeto.repositories.PedidoRepository;
@@ -22,36 +21,31 @@ import com.projeto.repositories.PedidoRepository;
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/pedidos")
-public class pedidoController {
-
+public class PedidosController {
+	
+	@Autowired
+	private PedidoAdition pedidosAdition;
+	
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
-	@Autowired
-	private PedidoAdition pedidoAdition;
-	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public List<PedidoDto> getAll() {
-		return pedidoAdition.getAll().stream().map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
+		return pedidosAdition.getAll().stream().map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());		
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public PedidoDto get(@PathVariable String pedidoId) {
+		return new PedidoDto(pedidoRepository.findOne(pedidoId));
 	}
 	
-	@RequestMapping(value = "/test", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PedidoDto get(@RequestBody pedidoIdDto id) {
-		return new PedidoDto(pedidoRepository.findOne(id.getId()));
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PedidoDto save(@PathVariable String parentId, @RequestBody PedidoDto pedidoDto) {
-		return new PedidoDto( pedidoRepository.save( pedidoDto.toEntity() ) );
-	}
-
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PedidoDto saveRoot(@RequestBody PedidoDto pedidoDto) {
+	public PedidoDto save(@RequestBody PedidoDto pedidoDto) {
 		return new PedidoDto( pedidoRepository.save( pedidoDto.toEntity() ) );
 	}
-
-	@RequestMapping(value = "/deletar", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void delete(@RequestBody pedidoIdDto id) {
-		pedidoRepository.delete( id.getId() );
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable String pedidoId) {
+		pedidoRepository.delete( pedidoId );
 	}
 }
