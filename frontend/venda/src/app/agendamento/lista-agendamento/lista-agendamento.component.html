@@ -1,0 +1,32 @@
+<div class="espaco-card">
+  <div class="card">
+    <div class="card-body">
+        <button class="btn btn-primary" routerLink="../add-agendamento/0">Adicionar</button>
+    </div>
+  </div>
+</div>
+<div class="espaco-card">
+    <div class="card">
+      <div class="card-header">
+        Lista de agendamentos
+      </div>
+      <div class="card-body">
+          <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">produto</th>
+                  <th scope="col">data</th>
+                  <th scope="col">quantidade</th>                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let agendamento of agendamentos" routerLink="../add-agendamento/{{agendamento.id}}">                  
+                  <td>{{buscaProduto(agendamento?.produtoId)}}</td>
+                  <td>{{agendamento?.data}}</td>
+                  <td>{{agendamento?.quantidade}}</td>                  
+                </tr>                
+              </tbody>
+            </table>        
+      </div>
+    </div>
+  </div>
