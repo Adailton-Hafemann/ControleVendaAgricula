@@ -1,3 +1,7 @@
 .espaco-card {
     padding: 20px;
 }
+
+.selecionado {
+    background-color: #5454ff;
+}

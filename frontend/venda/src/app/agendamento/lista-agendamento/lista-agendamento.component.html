@@ -11,7 +11,7 @@
         Lista de agendamentos
       </div>
       <div class="card-body">
-          <table class="table">
+          <table class="table" *ngIf="agendamentos.length > 0">
               <thead>
                 <tr>
                   <th scope="col">produto</th>
@@ -26,7 +26,10 @@
                   <td>{{agendamento?.quantidade}}</td>                  
                 </tr>                
               </tbody>
-            </table>        
+            </table>
+            <div class="alert alert-primary" role="alert" *ngIf="agendamentos.length === 0">
+              Nenhum agendamento cadastrado.    
+            </div>        
       </div>
     </div>
   </div>

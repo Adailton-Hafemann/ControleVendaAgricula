@@ -17,6 +17,9 @@ export class ListaAgendamentoComponent implements OnInit {
     this.produtos = JSON.parse(produtosLista);
     const agen = window.localStorage.getItem('agendamentos');
     this.agendamentos = JSON.parse(agen);    
+    if (this.agendamentos == undefined) {
+      this.agendamentos = [];
+    }
   }
 
   buscaProduto(produtoId) {

@@ -1,10 +1,43 @@
 <div class="espaco-card">
     <div class="card">
       <div class="card-header">
-        Cadastro de entrada de estoque
+        Entrada de estoque
       </div>
       <div class="card-body">
-        
+        <div class="row">
+          <div class="col-md-6">
+            <label>Produto</label>
+            <select class="form-control" [(ngModel)]="estoque.produtoId">
+              <option *ngFor="let produto of produtos" [value]="produto.id">{{produto.nome}} ({{produto.unidadeMedida}})</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+              <label>Data de validade</label>
+              <input class="form-control" type="date" [(ngModel)]="estoque.data">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <label>Quantidade</label>
+            <input class="form-control" type="text" [(ngModel)]="estoque.quantidade">
+          </div>
+        </div>        
       </div>
     </div>
   </div>
+  <div class="espaco-card">
+      <div class="card">        
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="alert alert-success" role="alert" *ngIf="isSalvo">
+                Salvo com sucesso
+              </div>
+            </div>            
+            <div class="col-md-6">
+              <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+            </div>
+          </div>        
+        </div>
+      </div>
+    </div>

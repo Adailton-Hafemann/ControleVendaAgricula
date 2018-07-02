@@ -36,6 +36,7 @@
             </div>            
             <div class="col-md-6">
               <button class="btn btn-primary" (click)="salvar()">Salvar</button>
+              <button style="margin-left: 20px" *ngIf="agendamentoId != 0" class="btn btn-primary" (click)="remover()">Deletar</button>
             </div>
           </div>        
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-agendamento',
@@ -19,7 +19,7 @@ export class AddAgendamentoComponent implements OnInit {
   }
   private agendamentos = [];
 
-  constructor(private activatedRoute: ActivatedRoute) { }  
+  constructor(private activatedRoute: ActivatedRoute, private router:Router) { }  
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -56,6 +56,15 @@ export class AddAgendamentoComponent implements OnInit {
     }  
     this.isSalvo = true;
     window.localStorage.setItem('agendamentos', JSON.stringify(this.agendamentos));
+  }
+
+  remover() {       
+    var index = this.agendamentos.indexOf(this.agendamento);
+      if (index > -1) {
+        this.agendamentos.splice(index, 1);
+      }           
+    window.localStorage.setItem('agendamentos', JSON.stringify(this.agendamentos));
+    this.router.navigate(['/lista-agendamento']);
   }
 
 }

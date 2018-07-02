@@ -1,10 +1,36 @@
 <div class="espaco-card">
-  <div class="card">
-    <div class="card-header">
-      Lista de estoques cadastrados
-    </div>
+  <div class="card">    
     <div class="card-body">
-      <button class="btn btn-primary" routerLink="../add-estoque">Adicionar</button>
+      <button class="btn btn-primary" routerLink="../add-estoque">Entrada</button>
+      <button *ngIf="estSelecionado.id" style="margin-left: 20px" class="btn btn-primary" routerLink="../saida-estoque/{{estSelecionado.id}}">Saida</button>
     </div>
   </div>
 </div>
+<div class="espaco-card">
+    <div class="card">
+      <div class="card-header">
+          Lista de estoques cadastrados
+      </div>
+      <div class="card-body">
+          <table class="table" *ngIf="estoque.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col">produto</th>
+                  <th scope="col">Validade</th>
+                  <th scope="col">quantidade</th>                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let est of estoque" (click)="selecionaEstoque(est)" [ngClass]="{'selecionado' : estSelecionado.id == est.id}">                  
+                  <td>{{buscaProduto(est?.produtoId)}}</td>
+                  <td>{{est?.data}}</td>
+                  <td>{{est?.quantidade}}</td>                  
+                </tr>                
+              </tbody>
+            </table>        
+            <div class="alert alert-primary" role="alert" *ngIf="estoque.length === 0">
+              Estoque vazio.    
+            </div>
+      </div>      
+    </div>
+  </div>
